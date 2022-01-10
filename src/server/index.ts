@@ -4,7 +4,6 @@ import createError, { HttpError } from 'http-errors';
 import morgan from 'morgan';
 import cors from 'cors';
 import helmet from 'helmet';
-import path from 'path';
 import { logger } from '../services';
 import { kpiRoute } from './routes';
 
@@ -19,12 +18,6 @@ const err = (error: HttpError, req: Request, res: Response, next: NextFunction):
     message: error.message,
   });
 };
-
-// Temp public folder for images
-app.use(
-  '/images',
-  express.static(path.join(__dirname, '../public/images'), { extensions: ['png', 'jpg', 'jpeg'] }),
-);
 
 // global middlewares
 app.use(cors());
